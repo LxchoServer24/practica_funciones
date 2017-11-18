@@ -1,0 +1,106 @@
+//practica 9
+//hacer un blackjack con funciones(21)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+void bienvenida();
+int nuevapartida();
+void gracias(int );
+void newcondicion(int);
+void newcarta(int );
+void condicion(int );
+int main(){
+	system("color 64");
+	srand(time(NULL));
+	char op;
+	bienvenida();
+	printf("\nNueva partida[s/n]:\t");
+	fflush(stdin);
+	scanf("%c",&op);
+	if(op=='s'||op=='S'){
+		nuevapartida();
+}
+if(op!='s'||op!='S'){
+    printf("gracias por jugar\n");
+}
+return 0;
+}
+void bienvenida(){
+printf("BIENVENID@ AL BLACK JACK\n");
+}
+int nuevapartida(){
+int i,carta=0,cont=0;
+printf("tus cartas son:\n");
+for( i=1;i<=2;i++){
+	   carta=0;
+	    carta=1+(rand()%11);
+		printf("carta #%i:[%i]\n",i,carta);
+		cont=cont+carta;
+	}
+	printf("la suma de sus cartas son: [%i]\n",cont);
+	condicion(cont);
+}
+void condicion(int cont){
+if(cont==21){
+		printf("\nGANASTES\n");
+	}
+if(cont>21){
+		printf("\nPERDISTES\n");
+	}
+if(cont<21){
+	char a;
+	printf("\nquieres otra carta??[s/n]:\t");
+	fflush(stdin);
+	scanf("%c",&a);
+	if(a=='s'||a=='S'){
+    newcarta(cont);
+	}
+	if(a!='s'||a!='S'){
+       gracias(cont);
+	}
+}}
+void newcarta(int cont){
+int newcartas=0;
+newcartas=1+(rand()%11);
+cont=cont+newcartas;
+printf("tu nueva carta es %i\n",newcartas);
+printf("tu nuevo puntaje es: %i\n",cont);
+newcondicion(cont);
+}
+void newcondicion(int cont){
+if(cont==21){
+		printf("\nGANASTES\n");
+	}
+if(cont>21){
+		printf("\nPERDISTES\n");
+	}
+if(cont<21){
+	char a;
+	printf("\nquieres otra carta??[s/n]:\t");
+	fflush(stdin);
+	scanf("%c",&a);
+	if(a=='s'||a=='S'){
+    int newcarta=0;
+newcarta=1+(rand()%11);
+cont=cont+newcarta;
+newcondicion(cont);
+	}
+	if(a!='s'||a!='S'){
+       gracias(cont);
+	}
+}}
+void gracias(int cont){
+    printf("\ngracias por jugar\n");
+    printf("\ntu puntaje fue de %i",cont);
+    printf("\nganarias pero estas debajo de 21\n");
+    	char op;
+	printf("\nNueva partida[s/n]:\t");
+	fflush(stdin);
+	scanf("%c",&op);
+	if(op=='s'||op=='S'){
+		nuevapartida();
+}
+if(op!='s'||op!='S'){
+    printf("gracias por jugar\n");
+}
+}
